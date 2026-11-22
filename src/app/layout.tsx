@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Outfit } from 'next/font/google'
+import { GoogleTagManager } from '@next/third-parties/google'
 import {
   DEFAULT_DESCRIPTION,
   DEFAULT_TITLE,
@@ -75,6 +76,7 @@ const structuredData = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-IE" className={outfit.variable}>
+      <GoogleTagManager gtmId="GTM-PSXQ26Q4" />
       <body>
         <script
           type="application/ld+json"
