@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { PHONE_URL } from '@/lib/seo'
+import { OPEN_COOKIE_SETTINGS_EVENT } from '@/components/CookieConsent'
 
 const F = 'var(--font-outfit), sans-serif'
 
@@ -145,7 +146,14 @@ export default function Footer() {
         paddingBottom: 20,
       }}>
         <p style={{ fontFamily: F, fontSize: 12, color: 'rgba(240,240,240,0.25)' }}>
-          © {year} T.A.C Construction. All rights reserved.
+          © {year} T.A.C Construction. All rights reserved.{' '}
+          <button
+            type="button"
+            className="footer-cookie-settings"
+            onClick={() => window.dispatchEvent(new Event(OPEN_COOKIE_SETTINGS_EVENT))}
+          >
+            Cookie Settings
+          </button>
         </p>
         {/* Bauhaus decorative dots */}
         <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
