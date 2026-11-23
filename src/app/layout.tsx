@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Outfit } from 'next/font/google'
-import { GoogleTagManager } from '@next/third-parties/google'
 import {
   DEFAULT_DESCRIPTION,
   DEFAULT_TITLE,
@@ -9,6 +8,7 @@ import {
   SOCIAL_IMAGE,
   absoluteUrl,
 } from '@/lib/seo'
+import CookieConsent from '@/components/CookieConsent'
 import MotionProvider from '@/components/MotionProvider'
 import WhatsAppWidget from '@/components/WhatsAppWidget'
 import './globals.css'
@@ -76,7 +76,6 @@ const structuredData = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-IE" className={outfit.variable}>
-      <GoogleTagManager gtmId="GTM-PSXQ26Q4" />
       <body>
         <script
           type="application/ld+json"
@@ -85,6 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         <MotionProvider>
+          <CookieConsent />
           {children}
           <WhatsAppWidget />
         </MotionProvider>
