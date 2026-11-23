@@ -1,10 +1,13 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import { EMAIL, EMAIL_URL, PHONE_DISPLAY, PHONE_URL } from '@/lib/seo'
+import { WHATSAPP_URL } from '@/components/WhatsAppWidget'
 
 const F = 'var(--font-outfit), sans-serif'
 
@@ -89,9 +92,9 @@ export default function ContactPage() {
 
               <div style={{ display: 'grid', gap: 14 }}>
                 {[
-                  { label: 'Phone', val: '+353 1 234 5678' },
-                  { label: 'WhatsApp', val: 'Chat With Us' },
-                  { label: 'Email', val: 'info@tacconstruction.ie' },
+                  { label: 'Phone', val: PHONE_DISPLAY, href: PHONE_URL },
+                  { label: 'WhatsApp', val: 'Chat With Us', href: WHATSAPP_URL, external: true },
+                  { label: 'Email', val: EMAIL, href: EMAIL_URL },
                   { label: 'Location', val: 'Dublin, Ireland' },
                 ].map((item) => (
                   <div
@@ -106,7 +109,23 @@ export default function ContactPage() {
                       {item.label}
                     </div>
                     <div style={{ fontFamily: F, fontSize: 15, fontWeight: 500, color: item.label === 'WhatsApp' ? '#1D7A47' : '#111111' }}>
-                      {item.val}
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          style={{ color: 'inherit', textDecoration: 'none' }}
+                          {...(item.external
+                            ? {
+                                target: '_blank',
+                                rel: 'noopener noreferrer',
+                                'aria-label': `${item.val} on WhatsApp (opens in a new tab)`,
+                              }
+                            : {})}
+                        >
+                          {item.val}
+                        </a>
+                      ) : (
+                        item.val
+                      )}
                     </div>
                   </div>
                 ))}
@@ -211,7 +230,10 @@ export default function ContactPage() {
                     Send Enquiry
                   </motion.button>
                   <div style={{ fontFamily: F, fontSize: 12, color: 'rgba(17,17,17,0.48)' }}>
-                    Your details stay private and are used only for this enquiry.
+                    Your details stay private and are used only for this enquiry.{' '}
+                    <Link href="/privacy-policy" style={{ color: '#8C1022', textUnderlineOffset: 3 }}>
+                      Privacy Policy
+                    </Link>
                   </div>
                 </div>
               </form>

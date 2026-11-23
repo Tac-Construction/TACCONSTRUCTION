@@ -1,8 +1,8 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import { PHONE_URL } from '@/lib/seo'
-import { OPEN_COOKIE_SETTINGS_EVENT } from '@/components/CookieConsent'
+import { EMAIL, EMAIL_URL, PHONE_DISPLAY, PHONE_URL } from '@/lib/seo'
+import { CookieSettingsButton } from '@/components/CookieConsent'
 
 const F = 'var(--font-outfit), sans-serif'
 
@@ -109,13 +109,21 @@ export default function Footer() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {[
-              { label: 'Phone', val: '+353 1 234 5678' },
-              { label: 'Email', val: 'info@tacconstruction.ie' },
+              { label: 'Phone', val: PHONE_DISPLAY, href: PHONE_URL },
+              { label: 'Email', val: EMAIL, href: EMAIL_URL },
               { label: 'Location', val: 'Dublin, Ireland' },
-            ].map(({ label, val }) => (
+            ].map(({ label, val, href }) => (
               <div key={label}>
                 <div style={{ fontFamily: F, fontSize: 9, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(240,240,240,0.25)', marginBottom: 4 }}>{label}</div>
-                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: 'rgba(240,240,240,0.6)' }}>{val}</div>
+                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: 'rgba(240,240,240,0.6)' }}>
+                  {href ? (
+                    <a href={href} style={{ color: 'inherit', textDecoration: 'none' }}>
+                      {val}
+                    </a>
+                  ) : (
+                    val
+                  )}
+                </div>
               </div>
             ))}
 
@@ -146,15 +154,13 @@ export default function Footer() {
         paddingBottom: 20,
       }}>
         <p style={{ fontFamily: F, fontSize: 12, color: 'rgba(240,240,240,0.25)' }}>
-          © {year} T.A.C Construction. All rights reserved.{' '}
-          <button
-            type="button"
-            className="footer-cookie-settings"
-            onClick={() => window.dispatchEvent(new Event(OPEN_COOKIE_SETTINGS_EVENT))}
-          >
-            Cookie Settings
-          </button>
+          © {year} T.A.C Construction. All rights reserved.
         </p>
+        <nav className="footer-legal" aria-label="Legal">
+          <Link href="/privacy-policy">Privacy Policy</Link>
+          <Link href="/cookie-policy">Cookie Policy</Link>
+          <CookieSettingsButton />
+        </nav>
         {/* Bauhaus decorative dots */}
         <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
           <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#C8102E' }} />

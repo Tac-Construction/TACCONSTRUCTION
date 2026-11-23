@@ -3,7 +3,7 @@ import { services } from '@/lib/services'
 import { SITE_URL } from '@/lib/seo'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ['', '/about', '/services', '/contact']
+  const staticRoutes = ['', '/about', '/services', '/contact', '/privacy-policy', '/cookie-policy']
 
   return [
     ...staticRoutes.map((path) => ({

@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { useDialogFocus } from '@/lib/useDialogFocus'
 
@@ -134,6 +135,20 @@ function applyConsent(choices: Choices) {
 
 /* ---------- UI ---------- */
 
+/** Reopens the preferences panel from anywhere on the site (footer, Cookie Policy). */
+export function CookieSettingsButton({ className }: { className?: string }) {
+  return (
+    <button
+      type="button"
+      className={className}
+      aria-haspopup="dialog"
+      onClick={() => window.dispatchEvent(new Event(OPEN_COOKIE_SETTINGS_EVENT))}
+    >
+      Cookie Settings
+    </button>
+  )
+}
+
 const categories = [
   {
     key: 'analytics' as const,
@@ -203,7 +218,10 @@ export default function CookieConsent() {
           </h2>
           <p className="cookie-banner-text">
             We use necessary cookies to keep this website working. With your permission, we also use analytics
-            cookies to understand how visitors use our website and improve our services.
+            cookies to understand how visitors use our website and improve our services.{' '}
+            <Link href="/cookie-policy" className="cookie-banner-link">
+              Cookie Policy
+            </Link>
           </p>
           <div className="cookie-actions">
             <button type="button" className="cookie-button" onClick={() => choose({ analytics: true, marketing: true })}>

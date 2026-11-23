@@ -8,7 +8,7 @@ T.A.C Construction is a residential construction and renovation website intended
 
 - **Business:** T.A.C Construction
 - **Project stage:** active pre-launch implementation
-- **Confirmed planned production domain:** `https://www.tacconstruction.ie`
+- **Confirmed canonical domain:** `https://tacconstruction.ie` (no `www`; `www` will permanently redirect to it once the domain transfer is complete)
 - **Primary audience:** homeowners seeking renovation, heating, roofing, plumbing, or general construction services
 - **Primary conversions:** quote requests through `/contact`, service discovery, and service-detail visits
 - **Current status:** the main routes, responsive interface, service interactions, and first technical SEO foundation are implemented; production deployment and client-content verification are not confirmed
@@ -556,11 +556,11 @@ The following are present but not referenced through the active route import gra
 
 ## Confirmed production domain
 
-The confirmed planned origin is `https://www.tacconstruction.ie`. The `www` form is centralized as `SITE_URL` in `src/lib/seo.ts` and is used by implemented production metadata.
+The confirmed canonical origin is `https://tacconstruction.ie`, without `www`. It is centralized as `SITE_URL` in `src/lib/seo.ts` and used by `metadataBase`, canonicals, sitemap, robots, Open Graph, and structured data.
 
 ## Implemented in code
 
-- `metadataBase` set from `https://www.tacconstruction.ie`.
+- `metadataBase` set from `https://tacconstruction.ie`.
 - Canonicals for Home, About, Services, Contact, and each service detail.
 - Route-specific titles and descriptions.
 - Open Graph and Twitter metadata for all public content routes.
@@ -640,7 +640,7 @@ No incomplete LocalBusiness schema is present.
 
 ## Production and SEO
 
-- [ ] Deploy to `https://www.tacconstruction.ie`.
+- [ ] Deploy to `https://tacconstruction.ie` and permanently redirect `https://www.tacconstruction.ie` to it.
 - [ ] Verify DNS, HTTPS, redirects, canonicals, metadata, structured data, robots, and sitemap on production.
 - [ ] Configure Search Console and submit the sitemap.
 - [ ] Add approved LocalBusiness data only after client facts are confirmed.

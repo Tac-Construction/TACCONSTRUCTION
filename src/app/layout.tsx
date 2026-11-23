@@ -3,6 +3,8 @@ import { Outfit } from 'next/font/google'
 import {
   DEFAULT_DESCRIPTION,
   DEFAULT_TITLE,
+  EMAIL,
+  PHONE_DISPLAY,
   SITE_NAME,
   SITE_URL,
   SOCIAL_IMAGE,
@@ -53,7 +55,10 @@ const structuredData = {
       '@type': 'Organization',
       '@id': `${SITE_URL}/#organization`,
       name: SITE_NAME,
+      legalName: 'Tac Construction Limited',
       url: SITE_URL,
+      email: EMAIL,
+      telephone: PHONE_DISPLAY,
       logo: {
         '@type': 'ImageObject',
         url: absoluteUrl('/images/Logo.png'),

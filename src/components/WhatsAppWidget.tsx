@@ -6,7 +6,7 @@ import { useDialogFocus } from '@/lib/useDialogFocus'
 const WHATSAPP_NUMBER = '353851976302'
 const WHATSAPP_MESSAGE =
   "Hi TAC Construction, I found you through your website and I'd like to ask about a project."
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
 
 function WhatsAppIcon() {
   return (
